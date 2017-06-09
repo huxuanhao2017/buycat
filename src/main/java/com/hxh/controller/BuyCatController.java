@@ -20,9 +20,9 @@ import java.net.URLEncoder;
 public class BuyCatController {
     @RequestMapping("/hello")
     @ResponseBody
-    public String hello() {
+    public String hello(int n,String j) {
         // output : str having value ? false
-        return "hello 你好";
+        return n+"hello 你好"+j;
     }
 
     @RequestMapping("/add")

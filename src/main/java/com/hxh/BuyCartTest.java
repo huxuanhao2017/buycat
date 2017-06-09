@@ -13,7 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -48,7 +47,7 @@ public class BuyCartTest {
 
     @Test
     public void test1() {
-        System.out.println(buyCatController.hello());
+//        System.out.println(buyCatController.hello());
         List<BuyItem> buyCarts = buyCartItemRepository.findAll();
         System.out.println(buyCarts);
         buyCarts.forEach((BuyItem p) ->
@@ -59,7 +58,14 @@ public class BuyCartTest {
 
     @Test
     public void test2() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/hello"))
+
+//        String contentAsString = mockMvc.perform(MockMvcRequestBuilders.get("/hello"))
+//                .andDo(MockMvcResultHandlers.print())
+//                .andReturn().getResponse().getContentAsString();
+//        System.out.println(contentAsString);
+        mockMvc.perform(MockMvcRequestBuilders.post("/hello")
+                .param("n", "1")
+                .param("j", "2sdsdsd"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
     }
