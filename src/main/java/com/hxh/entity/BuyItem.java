@@ -1,12 +1,8 @@
 package com.hxh.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -14,23 +10,20 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="buyer_item")
-public class BuyerItem {
+public class BuyItem {
     @Id
     @Column(name="id")
-    private String id;
+    private int id;
     @Column(name="status")
     private boolean isHave;
     @Column(name="num")
     private Integer num;
-    @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
-    @JsonIgnore
-    private BuyerCart buyerCart;
-    public String getId() {
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -48,5 +41,14 @@ public class BuyerItem {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    @Override
+    public String toString() {
+        return "BuyItem{" +
+                "id=" + id +
+                ", isHave=" + isHave +
+                ", num=" + num +
+                '}';
     }
 }
