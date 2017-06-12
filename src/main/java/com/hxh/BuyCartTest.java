@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -63,11 +64,13 @@ public class BuyCartTest {
 //                .andDo(MockMvcResultHandlers.print())
 //                .andReturn().getResponse().getContentAsString();
 //        System.out.println(contentAsString);
-        mockMvc.perform(MockMvcRequestBuilders.post("/hello")
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/hello")
                 .param("n", "1")
                 .param("j", "2sdsdsd"))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
+        String result = mvcResult.getResponse().getContentAsString();
+        System.out.println(result);
     }
 
     @Test
@@ -78,4 +81,14 @@ public class BuyCartTest {
                 System.out.println(p.toString())
         );
     }
+
+    @Test
+    public void test4() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/helloTest"))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+        String result = (String) mvcResult.getModelAndView().getModel().get("helloHxh");
+        System.out.println(result);
+    }
+
 }

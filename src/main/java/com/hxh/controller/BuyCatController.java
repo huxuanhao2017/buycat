@@ -3,6 +3,7 @@ package com.hxh.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.hxh.entity.BuyCart;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,9 +21,9 @@ import java.net.URLEncoder;
 public class BuyCatController {
     @RequestMapping("/hello")
     @ResponseBody
-    public String hello(int n,String j) {
+    public String hello(int n, String j) {
         // output : str having value ? false
-        return n+"hello 你好"+j;
+        return n + "hello 你好" + j;
     }
 
     @RequestMapping("/add")
@@ -59,11 +60,11 @@ public class BuyCatController {
 //        }
         JSONObject json = new JSONObject();
         json.put("skuId", "938366");
-        json.put("num",1);
+        json.put("num", 1);
         JSONObject json1 = new JSONObject();
         json1.put("skuId", "938366");
-        json1.put("num",2);
-        json1.put("store",7878);
+        json1.put("num", 2);
+        json1.put("store", 7878);
         Cookie cookie = null;
         Cookie cookieAdd = null;
         try {
@@ -76,8 +77,15 @@ public class BuyCatController {
         cookieAdd.setMaxAge(24 * 60 * 60);
         cookieAdd.setPath("/");
         cookie.setPath("/");
-      // response.addCookie(cookie);
+        // response.addCookie(cookie);
         response.addCookie(cookieAdd);
         return "redirect:/hello";
+    }
+
+    @RequestMapping("/helloTest")
+    public String testHello(Model model) {
+        model.addAttribute("helloHxh", "你好");
+        System.out.println("成功");
+        return "hello";
     }
 }
