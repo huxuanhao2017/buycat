@@ -1,6 +1,5 @@
 package com.hxh;
 
-import com.hxh.controller.BuyCatController;
 import com.hxh.entity.BuyItem;
 import com.hxh.repository.BuyCartItemRepository;
 import com.hxh.service.BuyCarService;
@@ -28,8 +27,6 @@ import java.util.List;
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class BuyCartTest {
-    @Autowired
-    private BuyCatController buyCatController;
 
     @Autowired
     private WebApplicationContext context;
@@ -59,11 +56,6 @@ public class BuyCartTest {
 
     @Test
     public void test2() throws Exception {
-
-//        String contentAsString = mockMvc.perform(MockMvcRequestBuilders.get("/hello"))
-//                .andDo(MockMvcResultHandlers.print())
-//                .andReturn().getResponse().getContentAsString();
-//        System.out.println(contentAsString);
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/hello")
                 .param("n", "1")
                 .param("j", "2sdsdsd"))
